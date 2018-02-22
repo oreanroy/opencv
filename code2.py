@@ -18,6 +18,7 @@ upper_yellow = np.array([30,255,255])
 
 countRed = 0
 countYellow = 0
+redFound = False
 
 def ballSearch():
 
@@ -37,13 +38,14 @@ def ballSearch():
 			break
 		if circlesRed is not None:
 			countRed+=1
-			if countRed>3:
+			if countRed>2:
 				countRed=0
 				print "Red ball found"
 				GPIO.output(red,GPIO.HIGH)
-		if circlesYellow is not None:
+				redFound = True
+		if circlesYellow is not None and redFound:
 			countYellow+=1
-			if countYellow>3:
+			if countYellow>2:
 				countYellow=0 
 				print "yellow ball found"
 				GPIO.output(yellow,GPIO.HIGH)
